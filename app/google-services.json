@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "995121141757",
+    "firebase_url": "https://pema-bf0f9.firebaseio.com",
+    "project_id": "pema-bf0f9",
+    "storage_bucket": "pema-bf0f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995121141757:android:b7339c23d44b5f6a",
+        "android_client_info": {
+          "package_name": "com.example.pema"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995121141757-mtp12vfnct72tb67ur7fgv3ga3sb60on.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pema",
+            "certificate_hash": "9e5fbb968e0e068bc37bbd3d7289c3723dd5365b"
+          }
+        },
+        {
+          "client_id": "995121141757-sk8n14u5hjogls3u8lg549a328ofq8bi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB99Q8VlfQjHDUXfc4KOAqewRjHaMy0_kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995121141757-sk8n14u5hjogls3u8lg549a328ofq8bi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
