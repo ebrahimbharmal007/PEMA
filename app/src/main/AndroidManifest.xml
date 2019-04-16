@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Login_Form"></activity>
+        <activity android:name=".Signup_Form"></activity>
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".Signup_Form"
+            android:name=".Login_Form"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

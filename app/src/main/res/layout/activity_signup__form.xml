@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:hint="Confirm Password"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textSize="22sp"
             />
 
