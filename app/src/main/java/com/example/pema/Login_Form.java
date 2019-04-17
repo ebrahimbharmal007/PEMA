@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,7 @@ public class Login_Form extends AppCompatActivity {
     EditText txtEmaillogin,txtPasswordlogin;
     Button btn_login;
     private FirebaseAuth firebaseAuth;
+    ProgressBar progressBarlogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,7 @@ public class Login_Form extends AppCompatActivity {
         txtEmaillogin = (EditText)findViewById(R.id.txtEmaillogin);
         txtPasswordlogin = (EditText)findViewById(R.id.txtPasswordlogin);
         btn_login = (Button)findViewById(R.id.btn_login);
+        progressBarlogin = (ProgressBar)findViewById(R.id.progressBarLogin);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +54,8 @@ public class Login_Form extends AppCompatActivity {
                 {
                     Toast.makeText(Login_Form.this, "Password too Short", Toast.LENGTH_SHORT).show();
                 }
+
+                progressBarlogin.setVisibility(View.VISIBLE);
 
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(Login_Form.this, new OnCompleteListener<AuthResult>() {
