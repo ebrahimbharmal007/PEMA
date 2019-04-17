@@ -18,7 +18,9 @@
 
         tools:ignore="MissingConstraints"
         >
+
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Full Name"
@@ -38,6 +40,7 @@
         tools:ignore="MissingConstraints"
         >
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtStudentID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Student ID"
@@ -58,6 +61,7 @@
         tools:ignore="MissingConstraints"
         >
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -77,6 +81,7 @@
         tools:ignore="MissingConstraints"
         >
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
@@ -90,24 +95,23 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_marginTop="10dp"
 
-        tools:ignore="MissingConstraints"
-        >
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirm Password"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textSize="22sp"
-            />
+        tools:ignore="MissingConstraints">
 
+       <ProgressBar
+           android:id="@+id/progressBar"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:layout_gravity="center_horizontal"
+           android:layout_marginTop="10dp"
+           android:visibility="gone"/>
     </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:id="@+id/btn_Resgiter"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="Register"
