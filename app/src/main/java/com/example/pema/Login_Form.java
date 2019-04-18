@@ -56,7 +56,6 @@ public class Login_Form extends AppCompatActivity {
                 }
 
                 progressBarlogin.setVisibility(View.VISIBLE);
-
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(Login_Form.this, new OnCompleteListener<AuthResult>() {
                             @Override

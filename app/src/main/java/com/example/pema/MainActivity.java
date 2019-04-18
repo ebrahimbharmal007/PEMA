@@ -1,8 +1,11 @@
 package com.example.pema;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +18,10 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TabLayout tabLayout;
+    private AppBarLayout appBarLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,20 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        tabLayout = (TabLayout)findViewById(R.id.tablayoutid);
+        appBarLayout = (AppBarLayout)findViewById(R.id.appbarid);
+        viewPager = (ViewPager)findViewById(R.id.viewpager);
+        ViewPageAdapter adapter = new ViewPageAdapter(getSupportFragmentManager());
+        adapter.AddFragment(new FragmentToday(),"Today");
+        adapter.AddFragment(new FragmentWeek(),"Week");
+        adapter.AddFragment(new FragmentMonth(),"Month");
+
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+
+
+
     }
 
     @Override
