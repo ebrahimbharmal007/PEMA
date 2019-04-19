@@ -3,6 +3,7 @@ package com.example.pema;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -93,24 +94,25 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.main_container,new expensesFragment());
             fragmentTransaction.commit();
+
             Objects.requireNonNull(getSupportActionBar()).setTitle("Expenses");
             // Handle the camera action
         } else if (id == R.id.nav_statistics) {
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.main_container,new statisticsFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.commitNow();
             Objects.requireNonNull(getSupportActionBar()).setTitle("Statistics");
 
         } else if (id == R.id.nav_search) {
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.main_container,new searchFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.commitNow();
             Objects.requireNonNull(getSupportActionBar()).setTitle("Search");
 
         } else if (id == R.id.nav_profile) {
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.main_container,new profileFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.commitNow();
             Objects.requireNonNull(getSupportActionBar()).setTitle("Profile");
 
         }
