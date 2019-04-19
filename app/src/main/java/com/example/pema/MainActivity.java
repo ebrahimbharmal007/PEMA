@@ -3,6 +3,7 @@ package com.example.pema;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    FragmentTransaction fragmentTransaction;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +43,12 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.main_container,new expensesFragment());
+        fragmentTransaction.commit();
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Expenses");
     }
 
     @Override
@@ -80,17 +89,29 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_expenses) {
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.main_container,new expensesFragment());
+            fragmentTransaction.commit();
+            Objects.requireNonNull(getSupportActionBar()).setTitle("Expenses");
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_statistics) {
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.main_container,new statisticsFragment());
+            fragmentTransaction.commit();
+            Objects.requireNonNull(getSupportActionBar()).setTitle("Statistics");
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_search) {
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.main_container,new searchFragment());
+            fragmentTransaction.commit();
+            Objects.requireNonNull(getSupportActionBar()).setTitle("Search");
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_profile) {
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.main_container,new profileFragment());
+            fragmentTransaction.commit();
+            Objects.requireNonNull(getSupportActionBar()).setTitle("Profile");
 
         }
 
