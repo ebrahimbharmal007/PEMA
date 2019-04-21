@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Login_Form extends AppCompatActivity {
 
@@ -36,8 +38,8 @@ public class Login_Form extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = txtEmaillogin.getText().toString().trim();
-                String password = txtPasswordlogin.getText().toString().trim();
+                final String email = txtEmaillogin.getText().toString().trim();
+                final String password = txtPasswordlogin.getText().toString().trim();
                 firebaseAuth = FirebaseAuth.getInstance();
                 if(TextUtils.isEmpty(email))
                 {
@@ -78,6 +80,8 @@ public class Login_Form extends AppCompatActivity {
 
     public void openMainActivity()
     {
+
+
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }

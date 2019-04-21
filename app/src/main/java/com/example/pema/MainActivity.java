@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -49,9 +51,10 @@ public class MainActivity extends AppCompatActivity
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-               View mView = getLayoutInflater().inflate(R.layout.addexpensedialogbox,null);
-               final EditText txt_notes = (EditText) mView.findViewById(R.id.txt_notes);
+                final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.addexpensedialogbox,null);
+                final EditText txt_notes = (EditText) mView.findViewById(R.id.txt_notes);
+                final EditText txt_total = (EditText) mView.findViewById(R.id.txt_total);
                 Button btn_cancel = (Button)mView.findViewById(R.id.btn_addexpense_cancel);
                 Button btn_save = (Button)mView.findViewById(R.id.btn_addexpense_save);
                 alert.setView(mView);
@@ -68,6 +71,14 @@ public class MainActivity extends AppCompatActivity
                 btn_save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        double val = Double.parseDouble(txt_total.getText().toString());
+
+                        DatabaseReference mDatabase;
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+                        mDatabase.child("admin").child("expenses").setValue(val);
+
                         Toast.makeText(MainActivity.this, "Expense Added", Toast.LENGTH_SHORT).show();
                         alertDialog.dismiss();
                     }
