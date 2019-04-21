@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "995121141757",
-    "firebase_url": "https://pema-bf0f9.firebaseio.com",
-    "project_id": "pema-bf0f9",
-    "storage_bucket": "pema-bf0f9.appspot.com"
+    "project_number": "1056627231014",
+    "firebase_url": "https://pema-a7ae9.firebaseio.com",
+    "project_id": "pema-a7ae9",
+    "storage_bucket": "pema-a7ae9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:995121141757:android:b7339c23d44b5f6a",
+        "mobilesdk_app_id": "1:1056627231014:android:b7339c23d44b5f6a",
         "android_client_info": {
           "package_name": "com.example.pema"
         }
       },
       "oauth_client": [
         {
-          "client_id": "995121141757-mtp12vfnct72tb67ur7fgv3ga3sb60on.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.pema",
-            "certificate_hash": "9e5fbb968e0e068bc37bbd3d7289c3723dd5365b"
-          }
-        },
-        {
-          "client_id": "995121141757-sk8n14u5hjogls3u8lg549a328ofq8bi.apps.googleusercontent.com",
+          "client_id": "1056627231014-rr7l85kp6t1vcvlvpjtd8qas4o101mni.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB99Q8VlfQjHDUXfc4KOAqewRjHaMy0_kc"
+          "current_key": "AIzaSyCfO5YEwjxWNrqIQ3xxJs-64H-Wgv_DFMw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "995121141757-sk8n14u5hjogls3u8lg549a328ofq8bi.apps.googleusercontent.com",
+              "client_id": "1056627231014-rr7l85kp6t1vcvlvpjtd8qas4o101mni.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
