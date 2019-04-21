@@ -8,15 +8,30 @@
 
     <TextView
         android:id="@+id/txtview_addexpense"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add New Expense"
         android:textSize="22sp"
-        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textColor="@color/pink"
         android:textAlignment="center"
 
         />
+
+    <TextView
+        android:id="@+id/date_expenses_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+        android:layout_marginTop="25dp"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+
+        android:textColor="#000000"
+        />
+
+
 
     <Spinner
         android:id="@+id/spinner_category"

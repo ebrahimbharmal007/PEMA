@@ -4,11 +4,14 @@ import android.os.Bundle;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -23,8 +26,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
@@ -50,6 +55,25 @@ public class MainActivity extends AppCompatActivity
                 ArrayAdapter<String> adapter_income = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.categories_incomes));
                 adapter_income.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 mSpinner_income.setAdapter(adapter_income);
+                Calendar calendar = Calendar.getInstance();
+                final int day = calendar.get(Calendar.DAY_OF_MONTH);
+                final int month = calendar.get(Calendar.MONTH);
+                final int year = calendar.get(Calendar.YEAR);
+                final TextView textView_date = mView_income.findViewById(R.id.date_income_view);
+                textView_date.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatePickerDialog dialog_date = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                             String strDate = (monthOfYear+1) + "/" + dayOfMonth + "/"+year;
+                             textView_date.setText(strDate);
+                            }
+                        },year,month,day);
+
+                        dialog_date.show(getFragmentManager(),"DatePickerDialog");
+                    }
+                });
                 final EditText txt_notes_income = (EditText) mView_income.findViewById(R.id.txt_notes_income);
                 final EditText txt_total_income = (EditText) mView_income.findViewById(R.id.txt_total_income);
                 Button btn_cancel_income = (Button)mView_income.findViewById(R.id.btn_addincome_cancel);
@@ -71,6 +95,7 @@ public class MainActivity extends AppCompatActivity
 
                         String value_total_income = txt_total_income.getText().toString().trim();
                         String income_category = mSpinner_income.getSelectedItem().toString();
+                        String value_date_income = (String) textView_date.getText();
                         if(TextUtils.isEmpty(value_total_income))
                         {
                             Toast.makeText(MainActivity.this, "Total field cannot be empty", Toast.LENGTH_SHORT).show();
@@ -78,6 +103,10 @@ public class MainActivity extends AppCompatActivity
                         else if (income_category.equalsIgnoreCase("Choose a Category"))
                         {
                             Toast.makeText(MainActivity.this, "Please select a Category", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (value_date_income.equalsIgnoreCase("Select Date"))
+                        {
+                            Toast.makeText(MainActivity.this, "Please Select a Date", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -103,6 +132,25 @@ public class MainActivity extends AppCompatActivity
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.categories_expenses));
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 mSpinner.setAdapter(adapter);
+                Calendar calendar = Calendar.getInstance();
+                final int day = calendar.get(Calendar.DAY_OF_MONTH);
+                final int month = calendar.get(Calendar.MONTH);
+                final int year = calendar.get(Calendar.YEAR);
+                final TextView textView_date = mView.findViewById(R.id.date_expenses_view);
+                textView_date.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatePickerDialog dialog_date = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                                String strDate = (monthOfYear+1) + "/" + dayOfMonth + "/"+year;
+                                textView_date.setText(strDate);
+                            }
+                        },year,month,day);
+
+                        dialog_date.show(getFragmentManager(),"DatePickerDialog");
+                    }
+                });
                final EditText txt_notes = (EditText) mView.findViewById(R.id.txt_notes);
                 final EditText txt_total_expenses = (EditText) mView.findViewById(R.id.txt_total);
                 Button btn_cancel = (Button)mView.findViewById(R.id.btn_addexpense_cancel);
@@ -123,6 +171,8 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View v) {
                         String value_total_expenses = txt_total_expenses.getText().toString().trim();
                         String expense_category = mSpinner.getSelectedItem().toString();
+                        String value_date_expenses = (String) textView_date.getText();
+
 
 
                         if(TextUtils.isEmpty(value_total_expenses))
@@ -133,6 +183,10 @@ public class MainActivity extends AppCompatActivity
                         else if (expense_category.equalsIgnoreCase("Choose a Category"))
                         {
                             Toast.makeText(MainActivity.this, "Select Category Please", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (value_date_expenses.equalsIgnoreCase("Select Date"))
+                        {
+                            Toast.makeText(MainActivity.this, "Please Select a Date", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -158,6 +212,8 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
         Objects.requireNonNull(getSupportActionBar()).setTitle("Expenses");
     }
+
+
 
     @Override
     public void onBackPressed() {
