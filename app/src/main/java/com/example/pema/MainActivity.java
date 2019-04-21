@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,8 +19,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Objects;
@@ -36,22 +39,72 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+//Add Income Button
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fabaction1);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Income Added", Toast.LENGTH_SHORT).show();
+                final AlertDialog.Builder alert_income = new AlertDialog.Builder(MainActivity.this);
+                View mView_income = getLayoutInflater().inflate(R.layout.addincomedialogbox,null);
+                final Spinner mSpinner_income = (Spinner)mView_income.findViewById(R.id.spinner_category_income);
+                ArrayAdapter<String> adapter_income = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.categories_incomes));
+                adapter_income.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mSpinner_income.setAdapter(adapter_income);
+                final EditText txt_notes_income = (EditText) mView_income.findViewById(R.id.txt_notes_income);
+                final EditText txt_total_income = (EditText) mView_income.findViewById(R.id.txt_total_income);
+                Button btn_cancel_income = (Button)mView_income.findViewById(R.id.btn_addincome_cancel);
+                Button btn_save_income = (Button)mView_income.findViewById(R.id.btn_addincome_save);
+                alert_income.setView(mView_income);
+                final AlertDialog alertDialog_income = alert_income.create();
+                alertDialog_income.setCanceledOnTouchOutside(false);
+                btn_cancel_income.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "Income Diacarded", Toast.LENGTH_SHORT).show();
+                        alertDialog_income.dismiss();
+                    }
+                });
+
+                btn_save_income.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        String value_total_income = txt_total_income.getText().toString().trim();
+                        String income_category = mSpinner_income.getSelectedItem().toString();
+                        if(TextUtils.isEmpty(value_total_income))
+                        {
+                            Toast.makeText(MainActivity.this, "Total field cannot be empty", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (income_category.equalsIgnoreCase("Choose a Category"))
+                        {
+                            Toast.makeText(MainActivity.this, "Please select a Category", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(MainActivity.this, "Income Added", Toast.LENGTH_SHORT).show();
+                            alertDialog_income.dismiss();
+                        }
+                    }
+                });
+
+                alertDialog_income.show();
+
+
             }
         });
-
+//Add Expense Button
         FloatingActionButton fab2 = (FloatingActionButton)findViewById(R.id.fabaction2);
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                View mView = getLayoutInflater().inflate(R.layout.addexpensedialogbox,null);
+                final Spinner mSpinner = (Spinner)mView.findViewById(R.id.spinner_category);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.categories_expenses));
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mSpinner.setAdapter(adapter);
                final EditText txt_notes = (EditText) mView.findViewById(R.id.txt_notes);
+                final EditText txt_total_expenses = (EditText) mView.findViewById(R.id.txt_total);
                 Button btn_cancel = (Button)mView.findViewById(R.id.btn_addexpense_cancel);
                 Button btn_save = (Button)mView.findViewById(R.id.btn_addexpense_save);
                 alert.setView(mView);
@@ -68,8 +121,24 @@ public class MainActivity extends AppCompatActivity
                 btn_save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "Expense Added", Toast.LENGTH_SHORT).show();
-                        alertDialog.dismiss();
+                        String value_total_expenses = txt_total_expenses.getText().toString().trim();
+                        String expense_category = mSpinner.getSelectedItem().toString();
+
+
+                        if(TextUtils.isEmpty(value_total_expenses))
+                        {
+                            Toast.makeText(MainActivity.this, "Total field cannot be blank", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else if (expense_category.equalsIgnoreCase("Choose a Category"))
+                        {
+                            Toast.makeText(MainActivity.this, "Select Category Please", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(MainActivity.this, "Expense Added", Toast.LENGTH_SHORT).show();
+                            alertDialog.dismiss();
+                        }
                     }
                 });
 
