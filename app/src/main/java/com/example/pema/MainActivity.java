@@ -8,6 +8,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Objects;
@@ -46,7 +49,31 @@ public class MainActivity extends AppCompatActivity
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Expense Added", Toast.LENGTH_SHORT).show();
+               final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+               View mView = getLayoutInflater().inflate(R.layout.addexpensedialogbox,null);
+               final EditText txt_notes = (EditText) mView.findViewById(R.id.txt_notes);
+                Button btn_cancel = (Button)mView.findViewById(R.id.btn_addexpense_cancel);
+                Button btn_save = (Button)mView.findViewById(R.id.btn_addexpense_save);
+                alert.setView(mView);
+                final AlertDialog alertDialog = alert.create();
+                alertDialog.setCanceledOnTouchOutside(false);
+                btn_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "Expense Diacarded", Toast.LENGTH_SHORT).show();
+                        alertDialog.dismiss();
+                    }
+                });
+
+                btn_save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "Expense Added", Toast.LENGTH_SHORT).show();
+                        alertDialog.dismiss();
+                    }
+                });
+
+                alertDialog.show();
             }
         });
 
