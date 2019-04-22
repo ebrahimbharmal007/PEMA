@@ -72,12 +72,22 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
 
-                        double val = Double.parseDouble(txt_total.getText().toString());
+
+                        String val = txt_total.getText().toString();
+                        String notes = txt_notes.getText().toString();
+                        String date = "4/21/2019";
+
+                        String list[] = {date, notes, val};
+
 
                         DatabaseReference mDatabase;
                         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-                        mDatabase.child("admin").child("expenses").setValue(val);
+//                        mDatabase.child("admin").child("expenses").child("2").push();
+//                        mDatabase.child("admin").child("expenses").child("2").setValue(list);
+//                        mDatabase.child("admin").child("expenses").child("total").setValue(val);
+                        mDatabase.child("admin").child("expenses").child("date").push();
+                        mDatabase.child("admin").child("expenses").child("date").setValue(date);
 
                         Toast.makeText(MainActivity.this, "Expense Added", Toast.LENGTH_SHORT).show();
                         alertDialog.dismiss();
