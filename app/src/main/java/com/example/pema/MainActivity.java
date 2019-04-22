@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //Add Income Button
-        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fabaction1);
+        final FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fabaction1);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
