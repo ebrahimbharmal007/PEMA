@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //Add Income Button
-        final FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fabaction1);
+        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fabaction1);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity
 
                         String value_total_income = txt_total_income.getText().toString().trim();
                         String income_category = mSpinner_income.getSelectedItem().toString();
-                        String value_date_income = (String) textView_date.getText();
                         if(TextUtils.isEmpty(value_total_income))
                         {
                             Toast.makeText(MainActivity.this, "Total field cannot be empty", Toast.LENGTH_SHORT).show();
@@ -103,10 +102,6 @@ public class MainActivity extends AppCompatActivity
                         else if (income_category.equalsIgnoreCase("Choose a Category"))
                         {
                             Toast.makeText(MainActivity.this, "Please select a Category", Toast.LENGTH_SHORT).show();
-                        }
-                        else if (value_date_income.equalsIgnoreCase("Select Date"))
-                        {
-                            Toast.makeText(MainActivity.this, "Please Select a Date", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -172,7 +167,6 @@ public class MainActivity extends AppCompatActivity
                         String value_total_expenses = txt_total_expenses.getText().toString().trim();
                         String expense_category = mSpinner.getSelectedItem().toString();
                         String value_date_expenses = (String) textView_date.getText();
-
 
 
                         if(TextUtils.isEmpty(value_total_expenses))
